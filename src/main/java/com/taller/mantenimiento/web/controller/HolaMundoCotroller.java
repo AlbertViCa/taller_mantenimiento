@@ -1,4 +1,4 @@
-package com.taller.mantenimiento;
+package com.taller.mantenimiento.web.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
