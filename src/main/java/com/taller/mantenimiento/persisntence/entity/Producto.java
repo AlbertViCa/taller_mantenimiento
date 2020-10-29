@@ -21,6 +21,10 @@ public class Producto {
     @Column(name = "id_categoria")
     private Integer idCategoria;
 
+    @ManyToOne//Muchos productos pueden pertenecer a una categoria
+    @JoinColumn(name = "id_categoria", insertable = false, updatable = false)//Se identifíca la columna que une a estas clases, se usan las etiquetas en false para indicar que, a traves de esta relación, no borraremos, actrualizaremos, ni agregaremos una catergoria, si queremos hacer estas acciones, se debe hacer a traves del entity categoria. Esto es para recuperar a que categoria pertenece un producto.
+    private Categoria categoria;
+
     public Integer getIdProducto() {
         return idProducto;
     }

@@ -1,6 +1,7 @@
 package com.taller.mantenimiento.persisntence.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "categorias")
@@ -16,6 +17,9 @@ public class Categoria {
     public Integer getIdCategoria() {
         return idCategoria;
     }
+
+    @OneToMany(mappedBy = "categoria")//mappedBy es para respaldar la información que acabamos de crear o ¿qué atributo justifica que una categoria pertenece a muchos productos?
+    private List<Producto> productos;
 
     public void setIdCategoria(Integer idCategoria) {
         this.idCategoria = idCategoria;

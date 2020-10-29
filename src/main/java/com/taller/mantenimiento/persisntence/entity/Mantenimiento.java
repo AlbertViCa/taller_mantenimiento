@@ -2,6 +2,7 @@ package com.taller.mantenimiento.persisntence.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "mantenimiento")
@@ -18,6 +19,13 @@ public class Mantenimiento {
     private LocalDateTime fecha;
 
     private boolean estado;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
+    private Cliente cliente;
+
+    @OneToMany(mappedBy = "producto")
+    private List<MantenimientoProducto> productos;
 
     public Integer getIdManenimiento() {
         return idManenimiento;

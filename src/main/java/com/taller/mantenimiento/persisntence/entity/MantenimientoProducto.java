@@ -1,9 +1,7 @@
 package com.taller.mantenimiento.persisntence.entity;
 
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "mantenimiento_productos")
@@ -15,6 +13,14 @@ public class MantenimientoProducto {
     private Integer total;
 
     private Boolean estado;
+
+    @ManyToOne
+    @JoinColumn(name = "id_mantenimiento", insertable = false, updatable = false)
+    private Mantenimiento mantenimiento;
+
+    @ManyToOne
+    @JoinColumn(name = "id_producto", insertable = false, updatable = false)
+    private Producto producto;
 
     public MantenimientoProductoPK getId() {
         return id;
