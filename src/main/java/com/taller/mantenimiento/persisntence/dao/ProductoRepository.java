@@ -7,6 +7,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ *
+ * Repositorio que se comunicará directamente con la Base de Datos.
+ *
+ * */
 
 @Repository
 public class ProductoRepository {
