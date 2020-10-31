@@ -5,6 +5,7 @@ public class Product {
     private Integer productId;
     private String trademark;
     private String model;
+    private Integer categoryId;
     private Category category;
 
     public Integer getProductId() {
@@ -25,6 +26,14 @@ public class Product {
 
     public String getModel() {
         return model;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
     public void setModel(String model) {
