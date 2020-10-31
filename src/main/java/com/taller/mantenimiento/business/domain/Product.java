@@ -28,16 +28,16 @@ public class Product {
         return model;
     }
 
+    public void setModel(String model) {
+        this.model = model;
+    }
+
     public Integer getCategoryId() {
         return categoryId;
     }
 
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
     }
 
     public Category getCategory() {
