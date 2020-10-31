@@ -15,7 +15,7 @@ import java.util.Optional;
 public interface ProductRepository {
     List<Product> getAll();
     Optional<List<Product>> getByCategory(int categoryId);
-    Optional<List<Product>> getProducto(int idProduct);
+    Optional<Product> getProduct(int idProduct);
     Product save(Product product);
     void delete(int productId);
 }

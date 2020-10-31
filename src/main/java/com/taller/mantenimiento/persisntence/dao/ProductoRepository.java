@@ -1,7 +1,10 @@
 package com.taller.mantenimiento.persisntence.dao;
 
+import com.taller.mantenimiento.business.domain.Product;
+import com.taller.mantenimiento.business.domain.repository.ProductRepository;
 import com.taller.mantenimiento.persisntence.crud.ProductoCrudRepository;
 import com.taller.mantenimiento.persisntence.entity.Producto;
+import com.taller.mantenimiento.persisntence.mapper.ProductMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,25 +17,34 @@ import java.util.Optional;
  * */
 
 @Repository
-public class ProductoRepository {
+public class ProductoRepository implements ProductRepository {
     private ProductoCrudRepository productoCrudRepository;
+    private ProductMapper mapper;
 
-    public List<Producto> getAll(){
-        return (List<Producto>) productoCrudRepository.findAll();
+    @Override
+    public List<Product> getAll(){
+        List<Producto> productos = (List<Producto>) productoCrudRepository.findAll();
+        return mapper.toProducts(productos);
     }
 
-    public List<Producto> getByCategoria(int idCategoria){
-        return productoCrudRepository.findByIdCategoriaOrderByMarcaAsc(idCategoria);
+    @Override
+    public Optional<List<Product>> getByCategory(int categoryId) {
+        List<Producto> productos = productoCrudRepository.findByIdCategoriaOrderByMarcaAsc(categoryId);
+        return Optional.of(mapper.toProducts(productos));//Ya que espera una lista de opcionales, se puede usar el métodp of, y ya que espera una lista de product, convertimos los productos.
     }
 
-    public Optional<Producto> getProducto(int idProducto){
-        return productoCrudRepository.findById(idProducto);
+    @Override
+    public Optional<Product> getProduct(int idProduct) {
+        return productoCrudRepository.findById(idProduct).map(producto -> mapper.toProduct(producto));
     }
 
-    public Producto save(Producto producto){
-        return productoCrudRepository.save(producto);
+    @Override
+    public Product save(Product product) {
+        Producto producto = mapper.toProducto(product);
+        return mapper.toProduct(productoCrudRepository.save(producto));
     }
 
+    @Override
     public void delete(int idProducto){
         productoCrudRepository.deleteById(idProducto);
     }

@@ -9,7 +9,7 @@ import org.mapstruct.Mappings;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {CategoryMapper.class})
+@Mapper(componentModel = "spring")
 public interface ProductMapper {
 
     @Mappings({
@@ -19,8 +19,8 @@ public interface ProductMapper {
             @Mapping(source = "idCategoria", target = "categoryId"),
             @Mapping(source = "categoria", target = "category")//Aquí hacemos uso del CategoryMapper, por eso indicamos en la notación @Mapper que haga uso de esa clase
     })
-    Product toProducto(Producto producto);
-    List<Product> toProducto(List<Producto> productos);
+    Product toProduct(Producto producto);
+    List<Product> toProducts(List<Producto> productos);
 
     @InheritInverseConfiguration
     Producto toProducto(Product product);
