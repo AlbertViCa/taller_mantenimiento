@@ -11,7 +11,7 @@ public class Mantenimiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_mantenimiento")
-    private Integer idManenimiento;
+    private Integer idMantenimiento;
 
     @Column(name = "id_cliente")
     private String idCliente;
@@ -24,15 +24,15 @@ public class Mantenimiento {
     @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "producto")
+    @OneToMany(mappedBy = "mantenimiento", cascade = {CascadeType.ALL}) //Cascade sirve para indicar que todos los proceso que se hagan el la BD de un mantenimiento van a incluir en cascada sus productos.
     private List<MantenimientoProducto> productos;
 
-    public Integer getIdManenimiento() {
-        return idManenimiento;
+    public Integer getIdMantenimiento() {
+        return idMantenimiento;
     }
 
-    public void setIdManenimiento(Integer idManenimiento) {
-        this.idManenimiento = idManenimiento;
+    public void setIdMantenimiento(Integer idMantenimiento) {
+        this.idMantenimiento = idMantenimiento;
     }
 
     public String getIdCliente() {
@@ -57,5 +57,21 @@ public class Mantenimiento {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<MantenimientoProducto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<MantenimientoProducto> productos) {
+        this.productos = productos;
     }
 }

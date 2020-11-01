@@ -10,11 +10,12 @@ public class MantenimientoProducto {
     @EmbeddedId
     private MantenimientoProductoPK id;
 
-    private Integer total;
+    private double total;
 
     private Boolean estado;
 
     @ManyToOne
+    @MapsId("idMantenimiento")//Cuando se haga la operación de cascada, cada producto sabrá a que clave primaria pertenece cada dentro de un mantenimiento.
     @JoinColumn(name = "id_mantenimiento", insertable = false, updatable = false)
     private Mantenimiento mantenimiento;
 
@@ -30,11 +31,11 @@ public class MantenimientoProducto {
         this.id = id;
     }
 
-    public Integer getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(Integer total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
@@ -45,4 +46,22 @@ public class MantenimientoProducto {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
+
+    public Mantenimiento getMantenimiento() {
+        return mantenimiento;
+    }
+
+    public void setMantenimiento(Mantenimiento mantenimiento) {
+        this.mantenimiento = mantenimiento;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+
 }
