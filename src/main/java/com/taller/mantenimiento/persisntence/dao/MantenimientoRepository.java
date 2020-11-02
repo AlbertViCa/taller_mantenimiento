@@ -26,8 +26,8 @@ public class MantenimientoRepository implements MaintenanceRepository {
     }
 
     @Override
-    public Optional<List<Maintenance>> getById(int maintenanceId) {
-        return mantenimientoCrudRepository.findByIdMantenimiento(maintenanceId)
+    public Optional<List<Maintenance>> getByCleintId(String clientId) {
+        return mantenimientoCrudRepository.findByIdCliente(clientId)
                 .map(mantenimientos -> mapper.toMaintenances(mantenimientos));
     }
 

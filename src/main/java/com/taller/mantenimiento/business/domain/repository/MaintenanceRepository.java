@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface MaintenanceRepository {
     List<Maintenance> getAll();
-    Optional<List<Maintenance>> getById(int idMaintenance);
+    Optional<List<Maintenance>> getByCleintId(String clientId);
     Maintenance save(Maintenance maintenance);
 }

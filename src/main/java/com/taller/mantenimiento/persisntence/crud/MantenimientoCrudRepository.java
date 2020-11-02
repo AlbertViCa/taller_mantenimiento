@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MantenimientoCrudRepository extends CrudRepository<Mantenimiento, Integer> {
-    Optional<List<Mantenimiento>> findByIdMantenimiento(int idMantenimiento);
+    Optional<List<Mantenimiento>> findByIdCliente(String idCliente);
 }

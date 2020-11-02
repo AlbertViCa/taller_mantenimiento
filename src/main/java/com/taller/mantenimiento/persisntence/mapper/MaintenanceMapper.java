@@ -16,6 +16,7 @@ public interface MaintenanceMapper {
     @Mappings({
             @Mapping(source = "idMantenimiento", target = "maintenanceId"),
             @Mapping(source = "productos", target = "products"),
+            @Mapping(source = "idCliente", target = "clientId"),
             @Mapping(source = "fecha", target = "date"),
             @Mapping(source = "estado", target = "active"),
 

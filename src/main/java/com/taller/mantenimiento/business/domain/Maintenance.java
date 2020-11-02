@@ -6,6 +6,7 @@ import java.util.List;
 public class Maintenance {
 
     private Integer maintenanceId;
+    private String clientId;
     private List<ProductMaintenace> products;
     private LocalDateTime date;
     private boolean active;
@@ -16,6 +17,14 @@ public class Maintenance {
 
     public void setMaintenanceId(Integer maintenanceId) {
         this.maintenanceId = maintenanceId;
+    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
     }
 
     public List<ProductMaintenace> getProducts() {
