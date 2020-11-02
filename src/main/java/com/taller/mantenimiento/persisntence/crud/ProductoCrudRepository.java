@@ -1,5 +1,6 @@
 package com.taller.mantenimiento.persisntence.crud;
 
+import com.taller.mantenimiento.business.domain.Product;
 import com.taller.mantenimiento.persisntence.entity.Producto;
 import org.springframework.data.repository.CrudRepository;
 

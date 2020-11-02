@@ -1,4 +1,4 @@
-package com.taller.mantenimiento.persisntence.dao;
+package com.taller.mantenimiento.persisntence.dao.domain;
 
 import com.taller.mantenimiento.business.domain.Maintenance;
 import com.taller.mantenimiento.business.domain.repository.MaintenanceRepository;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class MantenimientoRepository implements MaintenanceRepository {
+public class ManteminientoRepository implements MaintenanceRepository {
 
     @Autowired
     private MantenimientoCrudRepository mantenimientoCrudRepository;

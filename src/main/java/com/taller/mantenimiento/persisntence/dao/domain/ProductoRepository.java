@@ -1,4 +1,4 @@
-package com.taller.mantenimiento.persisntence.dao;
+package com.taller.mantenimiento.persisntence.dao.domain;
 
 import com.taller.mantenimiento.business.domain.Product;
 import com.taller.mantenimiento.business.domain.repository.ProductRepository;

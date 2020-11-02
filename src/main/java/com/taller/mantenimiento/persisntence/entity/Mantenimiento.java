@@ -27,6 +27,18 @@ public class Mantenimiento {
     @OneToMany(mappedBy = "mantenimiento", cascade = {CascadeType.ALL}) //Cascade sirve para indicar que todos los proceso que se hagan el la BD de un mantenimiento van a incluir en cascada sus productos.
     private List<MantenimientoProducto> productos;
 
+    public Mantenimiento() {
+    }
+
+    public Mantenimiento(Integer idMantenimiento, String idCliente, LocalDateTime fecha, boolean estado, Cliente cliente, List<MantenimientoProducto> productos) {
+        this.idMantenimiento = idMantenimiento;
+        this.idCliente = idCliente;
+        this.fecha = fecha;
+        this.estado = estado;
+        this.cliente = cliente;
+        this.productos = productos;
+    }
+
     public Integer getIdMantenimiento() {
         return idMantenimiento;
     }
