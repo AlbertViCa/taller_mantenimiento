@@ -2,7 +2,6 @@ package com.taller.mantenimiento.web.controller;
 
 import com.taller.mantenimiento.business.domain.Maintenance;
 import com.taller.mantenimiento.business.domain.service.MaintenanceService;
-import com.taller.mantenimiento.persisntence.crud.MantenimientoCrudRepository;
 import com.taller.mantenimiento.persisntence.mapper.MaintenanceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
