@@ -23,6 +23,16 @@ public class MantenimientoProducto {
     @JoinColumn(name = "id_producto", insertable = false, updatable = false)
     private Producto producto;
 
+    public MantenimientoProducto() {
+
+    }
+
+    public MantenimientoProducto(MantenimientoProductoPK id, double total, Boolean estado) {
+        this.id = id;
+        this.total = total;
+        this.estado = estado;
+    }
+
     public MantenimientoProductoPK getId() {
         return id;
     }

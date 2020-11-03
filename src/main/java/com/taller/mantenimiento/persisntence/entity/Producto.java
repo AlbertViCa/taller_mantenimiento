@@ -28,13 +28,12 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(Integer idProducto, String marca, String modelo, String descripcion, Integer idCategoria, Categoria categoria) {
+    public Producto(Integer idProducto, String marca, String modelo, String descripcion, Integer idCategoria) {
         this.idProducto = idProducto;
         this.marca = marca;
         this.modelo = modelo;
         this.descripcion = descripcion;
         this.idCategoria = idCategoria;
-        this.categoria = categoria;
     }
 
     public Integer getIdProducto() {

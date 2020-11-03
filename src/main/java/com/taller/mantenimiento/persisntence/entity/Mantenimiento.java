@@ -30,13 +30,11 @@ public class Mantenimiento {
     public Mantenimiento() {
     }
 
-    public Mantenimiento(Integer idMantenimiento, String idCliente, LocalDateTime fecha, boolean estado, Cliente cliente, List<MantenimientoProducto> productos) {
+    public Mantenimiento(Integer idMantenimiento, String idCliente, LocalDateTime fecha, boolean estado) {
         this.idMantenimiento = idMantenimiento;
         this.idCliente = idCliente;
         this.fecha = fecha;
         this.estado = estado;
-        this.cliente = cliente;
-        this.productos = productos;
     }
 
     public Integer getIdMantenimiento() {

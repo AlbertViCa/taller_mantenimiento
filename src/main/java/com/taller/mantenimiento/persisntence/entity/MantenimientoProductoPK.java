@@ -20,6 +20,14 @@ public class MantenimientoProductoPK implements Serializable {
     @Column(name = "id_producto")
     private  Integer idProducto;
 
+    public MantenimientoProductoPK() {
+    }
+
+    public MantenimientoProductoPK(Integer idMantenimiento, Integer idProducto) {
+        this.idMantenimiento = idMantenimiento;
+        this.idProducto = idProducto;
+    }
+
     public Integer getIdMantenimiento() {
         return idMantenimiento;
     }

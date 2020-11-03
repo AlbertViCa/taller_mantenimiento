@@ -24,6 +24,18 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Mantenimiento> mantenimientoList;
 
+    public Cliente() {
+
+    }
+
+    public Cliente(String clienteId, String nombre, String apellidos, Long celular, String correoElectronico) {
+        this.clienteId = clienteId;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.celular = celular;
+        this.correoElectronico = correoElectronico;
+    }
+
     public String getClienteId() {
         return clienteId;
     }
