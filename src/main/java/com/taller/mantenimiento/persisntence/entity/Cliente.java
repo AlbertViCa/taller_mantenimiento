@@ -1,13 +1,16 @@
 package com.taller.mantenimiento.persisntence.entity;
 
 
+import com.taller.mantenimiento.persisntence.dao.data.base.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.util.List;
+import java.util.Scanner;
 
 @Entity
 @Table(name = "clientes")
 public class Cliente {
-
     @Id
     @Column(name = "id")
     private String clienteId;

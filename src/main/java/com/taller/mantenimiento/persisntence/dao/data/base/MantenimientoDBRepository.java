@@ -3,12 +3,13 @@ package com.taller.mantenimiento.persisntence.dao.data.base;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Scanner;
 
 @Repository
-public class MantenimientoProductoRepository {
+public class MantenimientoDBRepository {
     private PreparedStatement ps;
     private ResultSet rs;
     private final DataBaseConnector dataBaseConnector = new DataBaseConnector();
@@ -17,18 +18,16 @@ public class MantenimientoProductoRepository {
     public void saveData(){
         try{
             Connection connection = dataBaseConnector.getConnection();
-            ps = connection.prepareStatement("insert into mantenimiento_prodcutos(id_mantenimiento, id_prodcuto, total, estado) values(?,?,?,?)");
+            ps = connection.prepareStatement("insert into mantenimiento(id_cliente, fecha, estado) values(?,?,?)");
 
-            System.out.println("Dame la id de mantenimiento");
-            ps.setInt(1, teclado.nextInt());
+            System.out.println("Dame la id del cliente");
+            ps.setString(1, teclado.next());
 
             System.out.println("dame la id del producto");
-            ps.setInt(2, teclado.nextInt());
+            ps.setDate(2, Date.valueOf(teclado.next()));
 
             System.out.println("Dame el costo total del mantenimiento ");
-            ps.setDouble(3, teclado.nextDouble());
-
-            ps.setBoolean(4, false);
+            ps.setBoolean(3, false);
 
             int resultado = ps.executeUpdate();//Se ejecuta la inserción
 
@@ -43,16 +42,17 @@ public class MantenimientoProductoRepository {
         }
     }
 
-    public void getMaintenanceProduct(){
+    public void getMaintenance(){
         try{
             Connection connection = dataBaseConnector.getConnection();
-            ps = connection.prepareStatement("select * from mantenimiento_productos where id_producto=?");
-            System.out.println("Dame la id de producto");
+            ps = connection.prepareStatement("select * from mantenimiento where id_mantenimiento=?");
+            System.out.println("Dame la id del mantenimiento");
             ps.setInt(1, teclado.nextInt());
             rs = ps.executeQuery();
 
             while(rs.next()){
-                System.out.println(rs.getDouble("total"));
+                System.out.println(rs.getString("id_cliente"));
+                System.out.println(rs.getDate("fecha"));
                 System.out.println(rs.getBoolean("estado"));
             }
         }catch (Exception ex){
@@ -64,10 +64,10 @@ public class MantenimientoProductoRepository {
         try{
             //Puede retornar listas de clientes, cambiar if a while cuando haya más datos
             Connection connection = dataBaseConnector.getConnection();
-            ps = connection.prepareStatement("select * from mantenimiento_productos");
+            ps = connection.prepareStatement("select * from mantenimiento");
             rs = ps.executeQuery();
             while(rs.next()){
-                System.out.println("Total: " + rs.getString("total") + "\nEstado: " + rs.getString("estado"));
+                System.out.println("ID Cliente: " + rs.getString("id_cliente") + "\nEstado: " + rs.getDate("fecha") + rs.getDouble("estado"));
             }
             connection.close();
         }catch (Exception ex){
@@ -78,12 +78,15 @@ public class MantenimientoProductoRepository {
     public void update(){
         try{
             Connection connection = dataBaseConnector.getConnection();
-            ps = connection.prepareStatement("update mantenimiento_productos set total=?, estado=? where id_producto=?");
+            ps = connection.prepareStatement("update mantenimiento set id_cliente=?, fecha=?, estado=? where id_mantenimiento=?");
 
-            System.out.println("Dame la marca del producto");
-            ps.setDouble(1, teclado.nextDouble());
+            System.out.println("Dame el id del cliente");
+            ps.setString(1, teclado.next());
 
-            System.out.println("Dame el modelo del producto");
+            System.out.println("Dame la fecha de entrega");
+            ps.setDate(2, Date.valueOf(teclado.next()));
+
+            System.out.println("Dame el estado del mantenimiento");
             ps.setBoolean(2, teclado.nextBoolean());
 
             int resultado = ps.executeUpdate();//Se ejecuta la modificación
@@ -102,7 +105,7 @@ public class MantenimientoProductoRepository {
     public void delete(){
         try{
             Connection connection = dataBaseConnector.getConnection();
-            ps = connection.prepareStatement("delete from mantenimiento_prodcutos where id_producto=?");
+            ps = connection.prepareStatement("delete from mantenimiento where id_mantenimiento=?");
 
             System.out.println("Dame el id del producto para eliminar su mantenimiento");
             ps.setInt(1, teclado.nextInt());
