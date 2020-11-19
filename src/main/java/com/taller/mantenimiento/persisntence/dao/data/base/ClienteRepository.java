@@ -1,5 +1,6 @@
 package com.taller.mantenimiento.persisntence.dao.data.base;
 
+import com.taller.mantenimiento.persisntence.entity.Cliente;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -14,30 +15,20 @@ public class ClienteRepository {
     private DataBaseConnector dataBaseConnector = new DataBaseConnector();
     private final Scanner teclado = new Scanner(System.in);
 
-    public void saveData(){
+    public void saveData(Cliente cliente){
         try{
             Connection connection = dataBaseConnector.getConnection();
-            ps = connection.prepareStatement("insert into clientes(id, nombre, apellidos, celular, correo_electronico=?) values(?,?,?,?,?)");
+            ps = connection.prepareStatement("insert into clientes(id, nombre, apellidos, celular, correo_electronico) values(?,?,?,?,?)");
 
-            System.out.println("Dame la id del cliente");
-            ps.setString(1, teclado.next());
-
-            System.out.println("Dame el nombre del cliente");
-            ps.setString(2, teclado.next());
-
-            System.out.println("Dame los apellidos del cliente");
-            ps.setString(3, teclado.next());
-
-            System.out.println("Dame el numero del cliente");
-            ps.setLong(4, teclado.nextLong());
-
-            System.out.println("Dame el correo elelctronico del cliente");
-            ps.setString(5, teclado.next());
+            ps.setString(1, cliente.getClienteId());
+            ps.setString(2, cliente.getNombre());
+            ps.setString(3, cliente.getApellidos());
+            ps.setLong(4, cliente.getCelular());
+            ps.setString(5, cliente.getCorreoElectronico());
 
             int resultado = ps.executeUpdate();//Se ejecuta la inserción
-
             if(resultado>0){
-                System.out.println("Producto registrado exitosamente");
+                System.out.println("Cliente registrado exitosamente");
             }else{
                 System.out.println("Error en el registro");
             }

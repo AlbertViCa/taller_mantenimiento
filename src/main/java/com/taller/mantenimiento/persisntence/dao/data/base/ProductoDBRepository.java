@@ -1,12 +1,16 @@
 package com.taller.mantenimiento.persisntence.dao.data.base;
 
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+import com.google.common.collect.Iterables;
+import com.taller.mantenimiento.persisntence.entity.Producto;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import java.util.Scanner;
+import java.util.*;
 
 @Repository
 public class ProductoDBRepository {
@@ -15,22 +19,15 @@ public class ProductoDBRepository {
     private final DataBaseConnector dataBaseConnector = new DataBaseConnector();
     private final Scanner teclado = new Scanner(System.in);
 
-    public void saveData(){
+    public void saveData(Producto producto){
         try{
             Connection connection = dataBaseConnector.getConnection();
             ps = connection.prepareStatement("insert into productos(marca, modelo, descripcion, id_categoria) values(?,?,?,?)");
 
-            System.out.println("Dame la marca del producto");
-            ps.setString(1, teclado.next());
-
-            System.out.println("Dame el modelo del producto");
-            ps.setString(2, teclado.next());
-
-            System.out.println("Dame la descripción de la problemática");
-            ps.setString(3, teclado.next());
-
-            System.out.println("Categoría a la que pertenece este producto");
-            ps.setInt(4, teclado.nextInt());
+            ps.setString(1, producto.getMarca());
+            ps.setString(2, producto.getModelo());
+            ps.setString(3, producto.getDescripcion());
+            ps.setInt(4, producto.getIdCategoria());
 
             int resultado = ps.executeUpdate();//Se ejecuta la inserción
 
@@ -127,5 +124,27 @@ public class ProductoDBRepository {
         }catch (Exception ex){
             System.out.println("ERROR: "+ex);
         }
+    }
+
+    public HashMap<Integer, String> getComboData(){
+        HashMap<Integer, String> listaProducto = new HashMap<>();
+        try{
+            //Puede retornar listas de clientes, cambiar if a while cuando haya más datos
+            Connection connection = dataBaseConnector.getConnection();
+            ps = connection.prepareStatement("select modelo, id_producto from productos");
+            rs = ps.executeQuery();
+            while(rs.next()){
+                listaProducto.put(rs.getInt("id_producto"), rs.getString("modelo"));
+            }
+            connection.close();
+        }catch (Exception ex){
+            System.out.println("ERROR: "+ex);
+        }
+
+        Iterables.removeIf(listaProducto.values(), Predicates.isNull());
+
+        System.out.println(listaProducto);
+
+        return listaProducto;
     }
 }

@@ -28,8 +28,7 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(Integer idProducto, String marca, String modelo, String descripcion, Integer idCategoria) {
-        this.idProducto = idProducto;
+    public Producto(String marca, String modelo, String descripcion, Integer idCategoria) {
         this.marca = marca;
         this.modelo = modelo;
         this.descripcion = descripcion;

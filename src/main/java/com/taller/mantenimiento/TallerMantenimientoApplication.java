@@ -17,6 +17,5 @@ public class TallerMantenimientoApplication {
 		ProductoDBRepository connector = new ProductoDBRepository();
 
 		connector.getData();
-		connector.saveData();
 	}
 }
