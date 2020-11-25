@@ -97,6 +97,7 @@ public class Registro extends javax.swing.JFrame {
         mantenimientoId = new java.awt.TextField();
         labelEstado = new javax.swing.JLabel();
         borrarMantenimiento = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -353,6 +354,8 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
+        jLabel12.setText("YYYY-MM-DD");
+
         javax.swing.GroupLayout registrLayout = new javax.swing.GroupLayout(registr);
         registr.setLayout(registrLayout);
         registrLayout.setHorizontalGroup(
@@ -362,7 +365,7 @@ public class Registro extends javax.swing.JFrame {
                 .addGroup(registrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(registrLayout.createSequentialGroup()
-                        .addGroup(registrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(registrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(registrLayout.createSequentialGroup()
                                 .addGroup(registrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
@@ -370,14 +373,17 @@ public class Registro extends javax.swing.JFrame {
                                     .addComponent(registroMantenimientoBTN)
                                     .addComponent(jLabel20)
                                     .addComponent(jLabel21)
-                                    .addGroup(registrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(idProductoRegistroMantenimiento, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(idClienteRegistroMantenimiento, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)))
-                                .addGap(62, 62, 62))
+                                    .addGroup(registrLayout.createSequentialGroup()
+                                        .addGroup(registrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(idProductoRegistroMantenimiento, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(idClienteRegistroMantenimiento, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel12)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(registrLayout.createSequentialGroup()
                                 .addComponent(registroTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(81, 81, 81)))
+                                .addGap(149, 149, 149)))
                         .addGroup(registrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(registrLayout.createSequentialGroup()
                                 .addGap(28, 28, 28)
@@ -398,7 +404,7 @@ public class Registro extends javax.swing.JFrame {
                                 .addComponent(modificarMantenimiento)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(borrarMantenimiento)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(85, 85, 85))
         );
         registrLayout.setVerticalGroup(
             registrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -424,7 +430,9 @@ public class Registro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(idProductoRegistroMantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
+                .addGroup(registrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
@@ -456,7 +464,7 @@ public class Registro extends javax.swing.JFrame {
 
         jLabel16.setText("Modelo");
 
-        jLabel17.setText("Descripción");
+        jLabel17.setText("Descripción del Problema");
 
         jLabel18.setText("Consultar por ID");
 
@@ -515,9 +523,9 @@ public class Registro extends javax.swing.JFrame {
                                     .addComponent(jLabel16)
                                     .addComponent(registroProductoModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(106, 106, 106)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel17)
-                                    .addComponent(registroProductoDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(registroProductoDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(115, 115, 115)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel19)
@@ -797,6 +805,7 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
