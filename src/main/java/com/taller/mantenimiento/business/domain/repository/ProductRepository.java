@@ -11,7 +11,7 @@ import java.util.Optional;
  * esto sirve para no depender de una BD específica sino que siempre estemos hablano en términos del dominio, es decir, en términos del negocio.
  *
  * */
-
+//
 public interface ProductRepository {
     List<Product> getAll();
     Optional<List<Product>> getByCategory(int categoryId);

@@ -1,5 +1,5 @@
 package com.taller.mantenimiento.business.domain;
-
+//
 public class Product {
 
     private Integer productId;

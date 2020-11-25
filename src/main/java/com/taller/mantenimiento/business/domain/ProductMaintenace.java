@@ -1,7 +1,5 @@
 package com.taller.mantenimiento.business.domain;
 
-import java.math.BigDecimal;
-
 public class ProductMaintenace {
 
     private Integer productId;

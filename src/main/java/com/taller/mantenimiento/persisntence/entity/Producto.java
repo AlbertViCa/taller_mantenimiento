@@ -3,7 +3,7 @@ package com.taller.mantenimiento.persisntence.entity;
 
 import javax.persistence.*;
 
-@Entity//Esta notación le da entender a Java que esta clase se utlilizará para mapear una tabla de Base de Datos
+@Entity//Esta notación le da entender a Java que esta clase se utlilizará para mapear una tabla de Base de Datos//
 @Table(name = "productos")
 public class Producto {
 

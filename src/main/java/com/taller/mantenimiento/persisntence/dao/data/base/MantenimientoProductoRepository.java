@@ -14,19 +14,16 @@ public class MantenimientoProductoRepository {
     private final DataBaseConnector dataBaseConnector = new DataBaseConnector();
     private final Scanner teclado = new Scanner(System.in);
 
-    public void saveData(){
+    public void saveData(int idProducto, int idMantenimiento, double total){
         try{
             Connection connection = dataBaseConnector.getConnection();
             ps = connection.prepareStatement("insert into mantenimiento_prodcutos(id_mantenimiento, id_prodcuto, total, estado) values(?,?,?,?)");
 
-            System.out.println("Dame la id de mantenimiento");
-            ps.setInt(1, teclado.nextInt());
+            ps.setInt(1, idMantenimiento);
 
-            System.out.println("dame la id del producto");
-            ps.setInt(2, teclado.nextInt());
+            ps.setInt(2, idProducto);
 
-            System.out.println("Dame el costo total del mantenimiento ");
-            ps.setDouble(3, teclado.nextDouble());
+            ps.setDouble(3, total);
 
             ps.setBoolean(4, false);
 

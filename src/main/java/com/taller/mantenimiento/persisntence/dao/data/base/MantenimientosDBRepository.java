@@ -1,36 +1,36 @@
 package com.taller.mantenimiento.persisntence.dao.data.base;
 
 import com.taller.mantenimiento.persisntence.entity.Cliente;
-import org.springframework.stereotype.Repository;
+import com.taller.mantenimiento.persisntence.entity.Mantenimientos;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
-@Repository
-public class ClienteRepository {
+public class MantenimientosDBRepository {
     private PreparedStatement ps;
     private ResultSet rs;
     private DataBaseConnector dataBaseConnector = new DataBaseConnector();
     private final Scanner teclado = new Scanner(System.in);
 
-    public void saveData(Cliente cliente){
+    public void saveData(String idCliente, int idProducto, double total, String fecha){
         try{
             Connection connection = dataBaseConnector.getConnection();
-            ps = connection.prepareStatement("insert into clientes(id, nombre, apellidos, celular, correo_electronico) values(?,?,?,?,?)");
+            ps = connection.prepareStatement("insert into mantenimientos(id_cliente, id_producto, total, fecha_entrega, estado) values(?,?,?,?,?)");
 
-            ps.setString(1, cliente.getClienteId());
-            ps.setString(2, cliente.getNombre());
-            ps.setString(3, cliente.getApellidos());
-            ps.setLong(4, cliente.getCelular());
-            ps.setString(5, cliente.getCorreoElectronico());
+            ps.setString(1, idCliente);
+            ps.setInt(2, idProducto);
+            ps.setDouble(3, total);
+            ps.setDate(4, Date.valueOf(fecha));
+            ps.setBoolean(5,false);
 
             int resultado = ps.executeUpdate();//Se ejecuta la inserción
             if(resultado>0){
-                JOptionPane.showMessageDialog(null, "Cliente registrado exitosamente");
+                JOptionPane.showMessageDialog(null, "Mantenimiento registrado exitosamente");
             }else{
                 JOptionPane.showMessageDialog(null, "Error en el registro", "Error", ERROR_MESSAGE);
             }
@@ -40,15 +40,15 @@ public class ClienteRepository {
         }
     }
 
-    public Cliente getClient(String id){
+    public Mantenimientos getMantenimiento(int id){
         try{
             Connection connection = dataBaseConnector.getConnection();
-            ps = connection.prepareStatement("select * from clientes where id=?");
-            ps.setString(1, id);
+            ps = connection.prepareStatement("select * from mantenimientos where id_mantenimiento=?");
+            ps.setInt(1, id);
             rs = ps.executeQuery();
 
             while(rs.next()){
-                return new Cliente(rs.getString("id"),rs.getString("nombre"),rs.getString("apellidos"),rs.getLong("celular"),rs.getString("correo_electronico"));
+                return new Mantenimientos(rs.getString("id_cliente"), rs.getInt("id_producto"), rs.getDouble("total"), rs.getDate("fecha_entrega"), rs.getBoolean("estado"));
             }
         }catch (Exception ex){
             System.out.println("ERROR: "+ex);
@@ -73,29 +73,24 @@ public class ClienteRepository {
         }
     }
 
-    public void update(String id, Cliente cliente){
+    public void update(int id, Mantenimientos mantenimiento){
         try{
             Connection connection = dataBaseConnector.getConnection();
-            ps = connection.prepareStatement("update clientes set id=?, nombre=?, apellidos=?, celular=?, correo_electronico=? where id=?");
-
-            ps.setString(1, cliente.getClienteId());
-
-            ps.setString(2, cliente.getNombre());
-
-            ps.setString(3, cliente.getApellidos());
-
-            ps.setLong(4, cliente.getCelular());
-
-            ps.setString(5, cliente.getCorreoElectronico());
+            ps = connection.prepareStatement("update mantenimientos set id_cliente=?, id_producto=?, total=?, fecha_entrega=?, estado=? where id_mantenimiento=?");
+            ps.setString(1, mantenimiento.getIdCleinte());
+            ps.setInt(2, mantenimiento.getIdProducto());
+            ps.setDouble(3, mantenimiento.getTotal());
+            ps.setDate(4, (Date) mantenimiento.getFecha());
+            ps.setBoolean(5, mantenimiento.isEstado());
             
-            ps.setString(6, id);
+            ps.setInt(6, id);
 
             int resultado = ps.executeUpdate();//Se ejecuta la modificación
 
             if(resultado>0){
-                JOptionPane.showMessageDialog(null, "Cliente modificado exitosamente");
+                JOptionPane.showMessageDialog(null, "Mantenimiento modificado exitosamente");
             }else{
-                JOptionPane.showMessageDialog(null, "Error en la modificación", "Error", ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error en la actualización", "Error", ERROR_MESSAGE);
             }
             connection.close();
         }catch (Exception ex){
@@ -103,18 +98,17 @@ public class ClienteRepository {
         }
     }
 
-    public void delete(String id){
+    public void delete(int id){
         try{
             Connection connection = dataBaseConnector.getConnection();
-            ps = connection.prepareStatement("delete from clientes where id=?");
+            ps = connection.prepareStatement("delete from mantenimientos where id=?");
 
-            System.out.println("Dame el cliente a leiminar");
-            ps.setString(1, id);
+            ps.setInt(1, teclado.nextInt());
 
             int resultado = ps.executeUpdate();//Se ejecuta la eliminación
 
             if(resultado>0){
-                JOptionPane.showMessageDialog(null, "Cliente eliminado exitosamente");
+                JOptionPane.showMessageDialog(null, "Mantenimiento eliminado exitosamente");
             }else{
                 JOptionPane.showMessageDialog(null, "Error en la eliminación", "Error", ERROR_MESSAGE);
             }

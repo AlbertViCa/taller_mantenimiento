@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import java.util.*;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 @Repository
 public class ProductoDBRepository {
@@ -32,9 +34,10 @@ public class ProductoDBRepository {
             int resultado = ps.executeUpdate();//Se ejecuta la inserción
 
             if(resultado>0){
-                System.out.println("Producto registrado exitosamente");
+                JOptionPane.showMessageDialog(null, "Producto registrado exitosamente");
             }else{
-                System.out.println("Error en el registro");
+                System.out.println("Error en la modificación");
+                JOptionPane.showMessageDialog(null, "Error en el registro", "Error", ERROR_MESSAGE);
             }
             connection.close();
         }catch (Exception ex){
@@ -42,22 +45,20 @@ public class ProductoDBRepository {
         }
     }
 
-    public void getProduct(){
+    public Producto getProduct(int id){
         try{
             Connection connection = dataBaseConnector.getConnection();
-            ps = connection.prepareStatement("select * from productos where id_producto=?");
-            ps.setInt(1, teclado.nextInt());
+            ps = connection.prepareStatement("SELECT * FROM productos WHERE id_producto=?");
+            ps.setInt(1, id);
             rs = ps.executeQuery();
 
             while(rs.next()){
-                System.out.println(rs.getString("marca"));
-                System.out.println(rs.getString("modelo"));
-                System.out.println(rs.getString("descripcion"));
-                System.out.println(rs.getInt("id_categoria"));
+                return new Producto(rs.getString("marca"),rs.getString("modelo"),rs.getString("descripcion"),rs.getInt("id_categoria"));
             }
         }catch (Exception ex){
             System.out.println("ERROR: "+ex);
         }
+        return null;
     }
 
     public void getData(){
@@ -75,29 +76,28 @@ public class ProductoDBRepository {
         }
     }
 
-    public void update(){
+    public void update(int id, Producto producto){
         try{
             Connection connection = dataBaseConnector.getConnection();
             ps = connection.prepareStatement("update productos set marca=?, modelo=?, descripcion=?, id_categoria=? where id_producto=?");
 
-            System.out.println("Dame la marca del producto");
-            ps.setString(1, teclado.next());
+            ps.setString(1, producto.getMarca());
 
-            System.out.println("Dame el modelo del producto");
-            ps.setString(2, teclado.next());
+            ps.setString(2, producto.getModelo());
 
-            System.out.println("Dame la descripción de la problemática");
-            ps.setString(3, teclado.next());
+            ps.setString(3, producto.getDescripcion());
 
-            System.out.println("Categoría a la que pertenece este producto");
-            ps.setInt(4, teclado.nextInt());
+            ps.setInt(4, producto.getIdCategoria());
+            
+            ps.setInt(5, id);
 
             int resultado = ps.executeUpdate();//Se ejecuta la modificación
 
             if(resultado>0){
-                System.out.println("Producto modificado exitosamente");
+                JOptionPane.showMessageDialog(null, "Producto modificado exitosamente");
             }else{
                 System.out.println("Error en la modificación");
+                JOptionPane.showMessageDialog(null, "Error en la modificación", "Error", ERROR_MESSAGE);
             }
             connection.close();
         }catch (Exception ex){
@@ -105,46 +105,23 @@ public class ProductoDBRepository {
         }
     }
 
-    public void delete(){
+    public void delete(int id){
         try{
             Connection connection = dataBaseConnector.getConnection();
             ps = connection.prepareStatement("delete from productos where id_producto=?");
 
-            System.out.println("Dame el id del producto a eliminar");
-            ps.setInt(1, teclado.nextInt());
+            ps.setInt(1, id);
 
             int resultado = ps.executeUpdate();//Se ejecuta la eliminación
 
             if(resultado>0){
-                System.out.println("Producto eliminado exitosamente");
+                JOptionPane.showMessageDialog(null, "Producto eliminado exitosamente");
             }else{
-                System.out.println("Error en la eliminación");
+                JOptionPane.showMessageDialog(null, "Error en la eliminación", "Error", ERROR_MESSAGE);
             }
             connection.close();
         }catch (Exception ex){
             System.out.println("ERROR: "+ex);
         }
-    }
-
-    public HashMap<Integer, String> getComboData(){
-        HashMap<Integer, String> listaProducto = new HashMap<>();
-        try{
-            //Puede retornar listas de clientes, cambiar if a while cuando haya más datos
-            Connection connection = dataBaseConnector.getConnection();
-            ps = connection.prepareStatement("select modelo, id_producto from productos");
-            rs = ps.executeQuery();
-            while(rs.next()){
-                listaProducto.put(rs.getInt("id_producto"), rs.getString("modelo"));
-            }
-            connection.close();
-        }catch (Exception ex){
-            System.out.println("ERROR: "+ex);
-        }
-
-        Iterables.removeIf(listaProducto.values(), Predicates.isNull());
-
-        System.out.println(listaProducto);
-
-        return listaProducto;
     }
 }

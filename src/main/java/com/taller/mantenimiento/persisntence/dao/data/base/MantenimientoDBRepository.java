@@ -15,18 +15,15 @@ public class MantenimientoDBRepository {
     private final DataBaseConnector dataBaseConnector = new DataBaseConnector();
     private final Scanner teclado = new Scanner(System.in);
 
-    public void saveData(){
+    public void saveData(String idCliente, String fechaEntrega){
         try{
             Connection connection = dataBaseConnector.getConnection();
             ps = connection.prepareStatement("insert into mantenimiento(id_cliente, fecha, estado) values(?,?,?)");
 
-            System.out.println("Dame la id del cliente");
-            ps.setString(1, teclado.next());
+            ps.setString(1, idCliente);
 
-            System.out.println("dame la id del producto");
-            ps.setDate(2, Date.valueOf(teclado.next()));
+            ps.setDate(2, Date.valueOf(fechaEntrega));
 
-            System.out.println("Dame el costo total del mantenimiento ");
             ps.setBoolean(3, false);
 
             int resultado = ps.executeUpdate();//Se ejecuta la inserción
@@ -102,13 +99,12 @@ public class MantenimientoDBRepository {
         }
     }
 
-    public void delete(){
+    public void delete(int id){
         try{
             Connection connection = dataBaseConnector.getConnection();
             ps = connection.prepareStatement("delete from mantenimiento where id_mantenimiento=?");
 
-            System.out.println("Dame el id del producto para eliminar su mantenimiento");
-            ps.setInt(1, teclado.nextInt());
+            ps.setInt(1, id);
 
             int resultado = ps.executeUpdate();//Se ejecuta la eliminación
 
@@ -121,5 +117,18 @@ public class MantenimientoDBRepository {
         }catch (Exception ex){
             System.out.println("ERROR: "+ex);
         }
+    }
+    
+    public int getMaxId(){
+        try{
+            Connection connection = dataBaseConnector.getConnection();
+            ps = connection.prepareStatement("SELECT id_mantenimiento FROM mantenimiento ORDER BY id_mantenimiento DESC LIMIT 1");
+            rs = ps.executeQuery();
+            return rs.getInt("id_mantenimiento");
+        }
+        catch(Exception ex){
+            System.out.println("ERROR:"+ex);
+        }
+        return -1;
     }
 }
