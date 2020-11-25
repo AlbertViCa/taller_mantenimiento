@@ -76,7 +76,6 @@ public class Registro extends javax.swing.JFrame {
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jButton1 = new javax.swing.JButton();
         tablaProductos = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         tablaClientes = new javax.swing.JButton();
         tablaMantenimientos = new javax.swing.JButton();
         registr = new javax.swing.JPanel();
@@ -254,8 +253,6 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Salir");
-
         tablaClientes.setText("Clientes");
         tablaClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,7 +269,6 @@ public class Registro extends javax.swing.JFrame {
 
         jLayeredPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(tablaProductos, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(tablaClientes, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(tablaMantenimientos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -284,9 +280,6 @@ public class Registro extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3))
                     .addComponent(tablaProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tablaMantenimientos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -303,9 +296,7 @@ public class Registro extends javax.swing.JFrame {
                 .addComponent(tablaClientes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tablaMantenimientos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(109, 109, 109))
+                .addContainerGap(380, Short.MAX_VALUE))
         );
 
         registr.setBackground(new java.awt.Color(203, 220, 254));
@@ -802,7 +793,6 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JTextField idClienteRegistroMantenimiento;
     private javax.swing.JTextField idProductoRegistroMantenimiento;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
